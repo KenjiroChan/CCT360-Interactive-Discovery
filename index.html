@@ -13,7 +13,7 @@
         <p class="logo">ROLL <span>36</span></p>
     </header>
 <main>
-    //this is the landing page with the image of the camera  on the lost and found shelf 
+    <!-- this is the landing page with the image of the camera on the lost and found shelf -->
     <section id="camera" class="scene">
     </section>
 
@@ -37,10 +37,23 @@
                 <p id="viewerClue" class="clue-note" hidden></p>
             </div>
         </div>
-        <button class="main-btn" onclick="showScene('clueboard')">Go to the clue board</button>
+        <button id="toClueboard" class="main-btn" onclick="showScene('clueboard')" disabled>Go to the clue board</button>
     </section>
     
     <section id="clueboard" class="scene" hidden>
+        <h2>Clue Board</h2>
+        <p>Here, you can review the clues you've found and try to piece together the story. Click on a clue to see it in more detail.</p>
+        <div id="board" class="board"></div>
+        <div>
+            <h3>Where is the camera's owner?</h3>
+            <div class="choices">
+                <button class="choice" onclick="answer(false)">Still somewhere on campus</button>
+                <button class="choice" onclick="answer(true)">On his way home to Osaka</button>
+                <button class="choice" onclick="answer(false)">Working at the campus café</button>
+            </div>
+            <p id="boardStatus" class="message"></p>
+        </div>
+        <button id="toFinalFrame" class="main-btn" onclick="showScene('finalframe')" disabled>Go to the final frame</button>
     </section>
 
     <section id="finalframe" class="scene" hidden>
@@ -52,3 +65,6 @@
     </section>
 
 </main>
+<script src="js/script.js"></script>
+</body>
+</html>
