@@ -1,0 +1,63 @@
+/* These are the colors i chose but you can change them to whatever pallate you think is better*/
+:root {
+    --bg: #1b1714;
+    --text: #ece4d6;
+    --muted: #a89a8a;
+    --line: #3d342c;
+    --safelight: #d9482f;
+    --paper: #f2ebdd;
+    --paper-text: #2b231d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Georgia, serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+}
+
+img { max-width: 100%; display: block; }
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+.site-header {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo { font-family: "IBM Plex Mono", monospace; font-weight: 600; margin: 0; }
+.logo span { color: var(--safelight); }
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 32px;
+}
+
+.main-btn {
+  align-self: flex-start;
+  background-color: var(--safelight);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 12px 20px;
+  font-family: "IBM Plex Mono", monospace;
+  cursor: pointer;
+}
+
+.main-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.message { color: var(--muted); font-style: italic; min-height: 1.4em; }
