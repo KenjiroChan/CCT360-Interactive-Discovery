@@ -251,3 +251,66 @@ body[data-scene="darkroom"] { background-color: #160605; }
   cursor: pointer;
 }
 .choice:hover { border-color: var(--safelight); }
+
+/* ===================== CAMERA (landing) ===================== */
+
+/* the photo of the camera on the lost-and-found shelf */
+.hero-img {
+  width: 100%;
+  max-width: 820px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+
+/* ===================== FRAME 36 ===================== */
+
+/* the code box and the button sit side by side, and wrap on small screens */
+.lock { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+#codeInput {
+  width: 140px;
+  padding: 10px 14px;
+  background-color: #2a1f18;
+  color: #e0a66b;
+  border: 2px dashed #5a4636;            /* same film-edge look as the negatives */
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.4rem;
+  letter-spacing: 0.4em;
+  text-align: center;
+}
+#codeInput:focus { outline: none; border-color: var(--safelight); }
+
+.final-print { display: flex; flex-direction: column; gap: 16px; }
+
+/* frame 36 starts blank like paper in the tray, then fades in (same effect as the darkroom) */
+#finalImg {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: var(--paper);
+  filter: grayscale(1) brightness(2.5) contrast(0.3);
+  opacity: 0.15;
+}
+#finalImg.developed {
+  filter: none;              /* the last frame comes through in full colour */
+  opacity: 1;
+  transition: filter 3s ease, opacity 3s ease;
+}
+
+
+/* ===================== ENDING ===================== */
+
+.ending-img {
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 10px solid var(--paper);       /* looks like a finished print */
+}
+
+
+/* the back button and the next button sit side by side */
+.nav-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
