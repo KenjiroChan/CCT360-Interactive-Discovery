@@ -13,50 +13,50 @@
 [hidden] { display: none !important; }
 
 body {
-  margin: 0;
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: Georgia, serif;
-  line-height: 1.6;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Georgia, serif;
+    line-height: 1.6;
 }
 
 h1, h2, h3 {
-  font-family: "IBM Plex Mono", monospace;
-  text-transform: uppercase;
+    font-family: "IBM Plex Mono", monospace;
+    text-transform: uppercase;
 }
 
 img { max-width: 100%; display: block; }
 
 main {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 20px 60px;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
 }
 
 .site-header {
-  padding: 12px 20px;
-  border-bottom: 1px solid var(--line);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--line);
 }
 
 .logo { font-family: "IBM Plex Mono", monospace; font-weight: 600; margin: 0; }
 .logo span { color: var(--safelight); }
 
 .scene {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 32px;
 }
 
 .main-btn {
-  align-self: flex-start;
-  background-color: var(--safelight);
-  color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 12px 20px;
-  font-family: "IBM Plex Mono", monospace;
-  cursor: pointer;
+    align-self: flex-start;
+    background-color: var(--safelight);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 20px;
+    font-family: "IBM Plex Mono", monospace;
+    cursor: pointer;
 }
 
 .main-btn:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -73,55 +73,55 @@ body[data-scene="darkroom"] { background-color: #160605; }
 
 /* one negative: dark film with dashed edges that look like sprocket holes */
 .negative {
-  background-color: #2a1f18;
-  color: #e0a66b;
-  border: 2px dashed #5a4636;
-  padding: 16px 22px;
-  font-family: "IBM Plex Mono", monospace;
-  cursor: pointer;
+    background-color: #2a1f18;
+    color: #e0a66b;
+    border: 2px dashed #5a4636;
+    padding: 16px 22px;
+    font-family: "IBM Plex Mono", monospace;
+    cursor: pointer;
 }
 .negative:hover { border-color: var(--safelight); }
 .negative.done { opacity: 0.4; }   /* already developed */
 
 /* the developer tray that holds the print */
 .tray {
-  position: relative;          /* lets the red glow (::after) sit on top of it */
-  width: 100%;
-  max-width: 560px;
-  aspect-ratio: 4 / 3;
-  padding: 16px;
-  background-color: #3a2a22;
-  border-radius: 6px;
+    position: relative;          /* lets the red glow (::after) sit on top of it */
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 4 / 3;
+    padding: 16px;
+    background-color: #3a2a22;
+    border-radius: 6px;
 }
 
 /* red safelight wash laid over the tray */
 .tray::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--safelight);
-  mix-blend-mode: multiply;
-  opacity: 0.45;
-  border-radius: 6px;
-  pointer-events: none;        /* so it never blocks clicks */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--safelight);
+    mix-blend-mode: multiply;
+    opacity: 0.45;
+    border-radius: 6px;
+    pointer-events: none;        /* so it never blocks clicks */
 }
 
 /* BEFORE developing: almost-blank, washed-out photo paper.
    There is no transition here on purpose, so loading the next negative resets instantly. */
 #trayImg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background-color: var(--paper);
-  filter: grayscale(1) brightness(2.5) contrast(0.3);
-  opacity: 0.15;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--paper);
+    filter: grayscale(1) brightness(2.5) contrast(0.3);
+    opacity: 0.15;
 }
 
 /* AFTER developing: the image fades in over 3 seconds (matches the 3000 in developFrame) */
 #trayImg.developed {
-  filter: grayscale(1);
-  opacity: 1;
-  transition: filter 3s ease, opacity 3s ease;
+    filter: grayscale(1);
+    opacity: 1;
+    transition: filter 3s ease, opacity 3s ease;
 }
 
 
@@ -129,37 +129,44 @@ body[data-scene="darkroom"] { background-color: #160605; }
 
 /* the thumbnails, laid out like a contact sheet */
 .contact-sheet {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
 }
 
 /* one thumbnail button */
 .print {
-  background-color: var(--paper);
-  color: var(--paper-text);
-  border: none;
-  padding: 8px;
-  text-align: left;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 12px;
-  cursor: pointer;
+    background-color: var(--paper);
+    color: var(--paper-text);
+    border: none;
+    padding: 8px;
+    text-align: left;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    cursor: pointer;
 }
 .print img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; margin-bottom: 6px; }
 .print.solved { outline: 3px solid var(--safelight); }   /* clue already found */
 
 /* the big view: photo on the left, notes on the right */
 .viewer {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
 }
 
 /* holds the photo and the grid on top of it */
 .viewer-photo {
-  position: relative;                              /* the grid is positioned against this */
-  box-shadow: 0 0 40px rgba(255, 250, 235, 0.25);  /* glow from the light table */
+    aspect-ratio: 4 / 3;
+    overflow: hidden;                                 /* crop the grid if it goes outside the photo */
+    position: relative;                              /* the grid is positioned against this */
+    box-shadow: 0 0 40px rgba(255, 250, 235, 0.25);  /* glow from the light table */
+}
+#viewerImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* the invisible 4 x 3 grid of clickable squares laid over the photo */
