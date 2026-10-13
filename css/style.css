@@ -62,3 +62,192 @@ main {
 .main-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .message { color: var(--muted); font-style: italic; min-height: 1.4em; }
+
+/* ===================== DARKROOM ===================== */
+
+/* body gets data-scene="darkroom" from showScene(), so the whole page turns safelight-red */
+body[data-scene="darkroom"] { background-color: #160605; }
+
+/* the row of negatives */
+.negatives { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* one negative: dark film with dashed edges that look like sprocket holes */
+.negative {
+  background-color: #2a1f18;
+  color: #e0a66b;
+  border: 2px dashed #5a4636;
+  padding: 16px 22px;
+  font-family: "IBM Plex Mono", monospace;
+  cursor: pointer;
+}
+.negative:hover { border-color: var(--safelight); }
+.negative.done { opacity: 0.4; }   /* already developed */
+
+/* the developer tray that holds the print */
+.tray {
+  position: relative;          /* lets the red glow (::after) sit on top of it */
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 4 / 3;
+  padding: 16px;
+  background-color: #3a2a22;
+  border-radius: 6px;
+}
+
+/* red safelight wash laid over the tray */
+.tray::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--safelight);
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+  border-radius: 6px;
+  pointer-events: none;        /* so it never blocks clicks */
+}
+
+/* BEFORE developing: almost-blank, washed-out photo paper.
+   There is no transition here on purpose, so loading the next negative resets instantly. */
+#trayImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: var(--paper);
+  filter: grayscale(1) brightness(2.5) contrast(0.3);
+  opacity: 0.15;
+}
+
+/* AFTER developing: the image fades in over 3 seconds (matches the 3000 in developFrame) */
+#trayImg.developed {
+  filter: grayscale(1);
+  opacity: 1;
+  transition: filter 3s ease, opacity 3s ease;
+}
+
+
+/* ===================== LIGHT TABLE ===================== */
+
+/* the thumbnails, laid out like a contact sheet */
+.contact-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+/* one thumbnail button */
+.print {
+  background-color: var(--paper);
+  color: var(--paper-text);
+  border: none;
+  padding: 8px;
+  text-align: left;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+.print img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; margin-bottom: 6px; }
+.print.solved { outline: 3px solid var(--safelight); }   /* clue already found */
+
+/* the big view: photo on the left, notes on the right */
+.viewer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* holds the photo and the grid on top of it */
+.viewer-photo {
+  position: relative;                              /* the grid is positioned against this */
+  box-shadow: 0 0 40px rgba(255, 250, 235, 0.25);  /* glow from the light table */
+}
+
+/* the invisible 4 x 3 grid of clickable squares laid over the photo */
+.photo-grid {
+  position: absolute;
+  inset: 0;                                  /* stretch to cover the whole photo */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+/* one square: invisible until hovered */
+.cell {
+  background: transparent;
+  border: 1px solid transparent;
+  color: white;
+  cursor: zoom-in;
+}
+.cell:hover { border-color: rgba(255, 255, 255, 0.6); background-color: rgba(255, 255, 255, 0.08); }
+.cell.correct { border: 2px solid var(--safelight); background-color: rgba(217, 72, 47, 0.15); }
+
+/* the clue written on a scrap of paper */
+.clue-note {
+  background-color: var(--paper);
+  color: var(--paper-text);
+  padding: 12px 16px;
+  font-family: "Caveat", cursive;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+/* on phones, stack the notes under the photo */
+@media (max-width: 700px) {
+  .viewer { grid-template-columns: 1fr; }
+}
+
+
+/* ===================== CLUE BOARD ===================== */
+
+/* the corkboard */
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  padding: 32px 24px;
+  background-color: #7a5636;
+  border-radius: 4px;
+}
+
+/* one pinned card */
+.pin-card {
+  position: relative;          /* lets the pin (::before) sit at the top */
+  width: 220px;
+  background-color: var(--paper);
+  color: var(--paper-text);
+  padding: 10px 10px 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* tilt every other card so the board looks hand-pinned */
+.pin-card:nth-child(odd)  { transform: rotate(-2deg); }
+.pin-card:nth-child(even) { transform: rotate(2deg); }
+
+/* the red pushpin */
+.pin-card::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--safelight);
+  transform: translateX(-50%);
+}
+
+.pin-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.pin-card .clue-text { font-family: "Caveat", cursive; font-size: 1.3rem; line-height: 1.2; margin: 8px 0 4px; }
+.pin-card .fact { font-size: 0.85rem; margin: 0; }
+
+/* the answer buttons for the question under the board */
+.choices { display: flex; flex-wrap: wrap; gap: 10px; }
+.choice {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  padding: 10px 16px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.choice:hover { border-color: var(--safelight); }

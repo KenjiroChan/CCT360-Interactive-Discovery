@@ -17,7 +17,21 @@
     <section id="camera" class="scene">
     </section>
 
+        <!-- DARKROOM: pick a negative, watch the print develop in the tray -->
     <section id="darkroom" class="scene" hidden>
+        <h2>The darkroom</h2>
+        <p>Click a negative to drop it into the developer tray, then wait for the image to come through.</p>
+
+        <!-- the negative buttons get added here by showDarkroom() -->
+        <div id="negatives" class="negatives"></div>
+
+        <!-- the tray where the print appears -->
+        <div class="tray">
+            <img id="trayImg" src="" alt="">
+        </div>
+
+        <p id="darkroomStatus" class="message"></p>
+        <button id="toLighttable" class="main-btn" onclick="showScene('lighttable')" disabled>Take the prints to the light table</button>
     </section>
 
     <section id="lighttable" class="scene" hidden>

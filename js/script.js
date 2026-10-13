@@ -1,8 +1,8 @@
 /*only 3 so far waiting for rest of pictures*/
 const frames = [
     {id: "04", title:"Coffee Break", img: "images/04.png", cells:[5], hint: "Take a look at the cup.", clue: "The barista wrote Kotaro on the cup.", fact: "His name is Kotaro."},
-    {id: "09", title:"Ready to go", img: "images/09.png", cells:[5, 6], hint: "There is something tied to the suitcase.", clue: "Luggage tag: K. Miyake, Toronto to Osaka.", fact: "His full name is Kotaro Miyake, flying home to Osaka."},
-    {id: "15", title:"Coffee Break", img: "images/15.png", cells:[5], hint: "Take a look at the cup.", clue: "The barista wrote Kotaro on the cup.", fact: "His name is Kotaro."},
+    {id: "09", title:"Ready to go", img: "images/09.png", cells:[4, 8], hint: "There is something tied to the suitcase.", clue: "Luggage tag: K. Miyake, Toronto to Osaka.", fact: "His full name is Kotaro Miyake, flying home to Osaka."},
+    {id: "15", title:"Study", img: "images/15.png", cells:[8,9], hint: "One of the notes has something paculiar written on it.", clue: "There is a number on the note.", fact: "His name is Kotaro."},
 ]
 const state={
     scene:"camera",
@@ -47,7 +47,7 @@ function developedFrame(frame, btn){
     if (state.developing) return;
     state.developing=true;
 
-    const trayImg = document.getElementById("trayimg");
+    const trayImg = document.getElementById("trayImg");
     const status = document.getElementById("darkroomStatus");
 
     trayImg.classList.remove("developed");
@@ -112,8 +112,58 @@ function openPrint(frame){
         cell.className = "cell";
         cell.setAttribute("aria-label", "Square " +i);
         cell.textContent = i;
-        cell.onclick = function(){checkClue(frame, i);};
+        cell.onclick = function(){checkCell(frame, i);};
         grid.appendChild(cell);
     }
     if (state.found.includes(frame.id)) showClue(frame);
 }
+
+function checkCell(frame, i){
+    if (frame.cells.includes(i)){
+        showClue(frame);
+    } else {
+        document.getElementById("viewerStatus").textContent = "That's not a clue. Hint: " + frame.hint;
+    }
+}
+
+function showClue(frame){
+    if(!state.found.includes(frame.id)) state.found.push(frame.id);
+
+    document.getElementById("viewerStatus").textContent = "You found a clue!";
+    const clue = document.getElementById("viewerClue");
+    clue.textContent=frame.clue;
+    clue.hidden=false;
+
+    drawPrints();
+    updateLighttableButton();
+}
+
+function updateLighttableButton() {
+    const allFound = state.found.length === frames.length;
+    document.getElementById("toClueboard").disabled = !allFound;
+}
+
+function showClueboard(){
+    for (const frame of frames){
+        if (!state.found.includes(frame.id)) continue;
+
+        const card = document.createElement("div");
+        card.className = "pin-card";
+        card.innerHTML ='<img src="' + frame.img + '" alt="' + frame.title + '">' + '<p class="clue-text">' + frame.clue + '</p>' + '<p class="fact">' + frame.fact + '</p>';        
+        board.appendChild(card);
+    }
+    document.getElementById("toFinalFrame").disabled = !state.solved;
+}
+
+function answer(isRight){
+    const status = document.getElementById("boardStatus");
+
+    if(isRight){
+        state.solved = true;
+        status.textContent = "That fits everything on the board. There's one frame left on the roll.";
+        document.getElementById("toFinalFrame").disabled = false;
+    } else {
+        status.textContent = "That doesn't fit with the other clues. Look at the pictures again";
+    }
+}
+showScene("darkroom");
