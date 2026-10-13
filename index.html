@@ -15,12 +15,16 @@
 <main>
     <!-- this is the landing page with the image of the camera on the lost and found shelf -->
     <section id="camera" class="scene">
+        <img class="hero-img" src="images/hero.png" alt="A worn film camera on a library lost-and-found shelf, with a paper tag that says FOUND">
+        <h2>A camera nobody claimed</h2>
+        <p>This film camera has been sitting on the library's lost-and-found shelf for weeks. The counter says 36, so every frame on the roll has been shot, but nobody ever developed it.</p>
+        <button class="main-btn" onclick="showScene('darkroom')">Open the camera and take out the roll</button>
     </section>
 
         <!-- DARKROOM: pick a negative, watch the print develop in the tray -->
     <section id="darkroom" class="scene" hidden>
         <h2>The darkroom</h2>
-        <p>Click a negative to drop it into the developer tray, then wait for the image to come through.</p>
+        <p>Click a negative to drop it into the developer tray, then wait for the image to come through. You can take your prints to the light table at any time and come back for more.</p>
 
         <!-- the negative buttons get added here by showDarkroom() -->
         <div id="negatives" class="negatives"></div>
@@ -51,12 +55,16 @@
                 <p id="viewerClue" class="clue-note" hidden></p>
             </div>
         </div>
-        <button id="toClueboard" class="main-btn" onclick="showScene('clueboard')" disabled>Go to the clue board</button>
+        <p id="lighttableStatus" class="message"></p>
+        <div class="nav-row">
+            <button class="choice" onclick="showScene('darkroom')">Back to the darkroom</button>
+            <button id="toClueboard" class="main-btn" onclick="showScene('clueboard')" disabled>Go to the clue board</button>
+        </div>
     </section>
     
     <section id="clueboard" class="scene" hidden>
         <h2>Clue Board</h2>
-        <p>Here, you can review the clues you've found and try to piece together the story. Click on a clue to see it in more detail.</p>
+        <p>Here, you can review the clues you've found and try to piece together the story.</p>
         <div id="board" class="board"></div>
         <div>
             <h3>Where is the camera's owner?</h3>
@@ -70,12 +78,35 @@
         <button id="toFinalFrame" class="main-btn" onclick="showScene('finalframe')" disabled>Go to the final frame</button>
     </section>
 
+    <!-- FRAME 36: locked until the player types the code from the sticky notes -->
     <section id="finalframe" class="scene" hidden>
         <h2>Frame 36</h2>
+        <p>The last negative won't come through in the tray. Three empty boxes are printed along the edge of the film. Maybe the numbers you found on the roll fit.</p>
+
+        <div class="lock">
+            <input id="codeInput" type="text" inputmode="numeric" maxlength="3" placeholder="_ _ _" aria-label="Three digit code">
+            <button class="main-btn" onclick="checkCode()">Develop frame 36</button>
+        </div>
+        <p id="codeStatus" class="message"></p>
+
+        <!-- shown once the code is right -->
+        <div id="finalPrint" class="final-print" hidden>
+            <img id="finalImg" src="images/36.png" alt="A yellow sticky note on a window that says: thanks for developing my last day in Toronto, Kota. An airport shuttle waits outside.">
+            <h3>What do you do with the roll?</h3>
+            <div class="choices">
+                <button class="choice" onclick="showEnding('mail')">Mail the prints to Kota in Osaka</button>
+                <button class="choice" onclick="showEnding('shelf')">Put the camera back on the shelf</button>
+            </div>
+        </div>
     </section>
-    
+
+    <!-- ENDING: text and photo change depending on the choice above -->
     <section id="ending" class="scene" hidden>
-        <h2>The End</h2>
+        <img id="endingImg" class="ending-img" src="" alt="">
+        <h2 id="endingTitle"></h2>
+        <p id="endingText"></p>
+        <p id="endingStats" class="message"></p>
+        <button class="main-btn" onclick="restart()">Start over</button>
     </section>
 
 </main>
