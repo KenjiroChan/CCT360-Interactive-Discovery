@@ -1,10 +1,12 @@
 /*only 3 so far waiting for rest of pictures*/
 const frames = [
     {id: "02", title: "Lecture", img: "images/02.png"},
-    {id: "04", title:"Coffee Break", img: "images/04.png", cells:[4], hint: "Take a look at the cup.", clue: "The barista wrote Kotaro on the cup.", fact: "His name is Kotaro."},
+    {id: "04", title:"Coffee Break", img: "images/04.png", cells:[4], hint: "Take a look at the cup.", clue: "The barista wrote Kota on the cup.", fact: "His name is Kota."},
     {id: "09", title:"Ready to go", img: "images/09.png", cells:[4, 8], hint: "There is something tied to the suitcase.", clue: "Luggage tag: K. Miyake, Toronto to Osaka.", fact: "His full name is Kotaro Miyake, flying home to Osaka."},
     {id: "12", title: "Campus", img: "images/12.png"},
     {id: "15", title:"Study", img: "images/15.png", cells:[8,9], hint: "One of the notes has something paculiar written on it.", clue: "There is a number on the note.", fact: "Keep note of the number 7."},
+    {id: "21", title: "Lunch", img: "images/21.png", cells: [10, 11], hint: "Something is stuck to the tray.", clue: "Another sticky note: 3.", fact: "The second number is 3."},
+    {id: "28", title: "Moving out", img: "images/28.png", cells: [2], hint: "Look inside the locker.", clue: "A sticky note on the back wall: 6.", fact: "The last number is 6."},
 ]
 const state={
     scene:"camera",
