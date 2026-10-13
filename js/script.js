@@ -123,6 +123,7 @@ function openPrint(frame){
 function checkCell(frame, i){
     if (!frame.clue){
         document.getElementById("viewerStatus").textContent = "There is no clue in this photo.";
+        return;
     }
     if (frame.cells.includes(i)){
         showClue(frame);
@@ -145,11 +146,12 @@ function showClue(frame){
 
 function updateLighttableButton() {
     const clueFrames = frames.filter(function(frame){return frame.clue;});
-    const allFound = state.found.length === frames.length;
+    const allFound = state.found.length === clueFrames.length;
     document.getElementById("toClueboard").disabled = !allFound;
 }
 
 function showClueboard(){
+    const board = document.getElementById("board");
     for (const frame of frames){
         if (!state.found.includes(frame.id)) continue;
 

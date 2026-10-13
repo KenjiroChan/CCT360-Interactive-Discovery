@@ -186,7 +186,6 @@ body[data-scene="darkroom"] { background-color: #160605; }
   cursor: zoom-in;
 }
 .cell:hover { border-color: rgba(255, 255, 255, 0.6); background-color: rgba(255, 255, 255, 0.08); }
-.cell.correct { border: 2px solid var(--safelight); background-color: rgba(217, 72, 47, 0.15); }
 
 /* the clue written on a scrap of paper */
 .clue-note {
