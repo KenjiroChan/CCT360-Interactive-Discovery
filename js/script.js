@@ -136,6 +136,7 @@ function openPrint(frame){
     document.getElementById("viewerStatus").textContent = "Click the part of the photo that you think is a clue.";
     document.getElementById("viewerClue").hidden = true;
 
+    //this section builds the 4 x 3 grid of buttons that the player can click to find the clue
     const grid = document.getElementById("photoGrid");
     grid.innerHTML = "";
     for (let i = 0; i<12; i++){
@@ -145,9 +146,12 @@ function openPrint(frame){
         cell.onclick = function(){checkCell(frame, i);};
         grid.appendChild(cell);
     }
+
+    //if the player has already found the clue, show it right away
     if (state.found.includes(frame.id)) showClue(frame);
 }
 
+//Runs when a square is clicked and if the player found a clue
 function checkCell(frame, i){
     if (!frame.clue){
         document.getElementById("viewerStatus").textContent = "There is no clue in this photo.";
@@ -160,7 +164,10 @@ function checkCell(frame, i){
     }
 }
 
+//saves clue as found 
 function showClue(frame){
+
+    //adds picture to the found list
     if(!state.found.includes(frame.id)) state.found.push(frame.id);
 
     document.getElementById("viewerStatus").textContent = "You found a clue!";
@@ -169,10 +176,12 @@ function showClue(frame){
     clue.hidden=false;
 
     drawPrints();
-    updateLighttableButton();
+    updateLighttableButton(); //check if all clues are found now
 }
 
+//unlocks the clue board if all clues were found 
 function updateLighttableButton() {
+    //make a smaller list with only the photos that have a clue
     const clueFrames = frames.filter(function(frame){return frame.clue;});
     const allFound = state.found.length === clueFrames.length;
     document.getElementById("toClueboard").disabled = !allFound;
@@ -194,11 +203,14 @@ function showClueboard(){
     for (const frame of frames){
         if (!state.found.includes(frame.id)) continue;
 
+        //build the card that is pinned with the clue in handwriting and the fact under it 
         const card = document.createElement("div");
         card.className = "pin-card";
         card.innerHTML ='<img src="' + frame.img + '" alt="' + frame.title + '">' + '<p class="clue-text">' + frame.clue + '</p>' + '<p class="fact">' + frame.fact + '</p>';        
         board.appendChild(card);
     }
+
+    // the final frame button stays unlocked if the question was already answered
     document.getElementById("toFinalFrame").disabled = !state.solved;
 }
 

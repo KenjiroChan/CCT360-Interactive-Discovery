@@ -21,7 +21,8 @@
         <button class="main-btn" onclick="showScene('darkroom')">Open the camera and take out the roll</button>
     </section>
 
-        <!-- DARKROOM: pick a negative, watch the print develop in the tray -->
+
+    <!-- Darkroom scene -->
     <section id="darkroom" class="scene" hidden>
         <h2>The darkroom</h2>
         <p>Click a negative to drop it into the developer tray, then wait for the image to come through. You can take your prints to the light table at any time and come back for more.</p>
@@ -34,16 +35,20 @@
             <img id="trayImg" src="" alt="">
         </div>
 
+        <!-- status text like "Developing frame 04..." gets written here -->
         <p id="darkroomStatus" class="message"></p>
+        <!-- starts disabled and updateDarkroomButton() unlocks it after the first print -->
         <button id="toLighttable" class="main-btn" onclick="showScene('lighttable')" disabled>Take the prints to the light table</button>
     </section>
 
+    <!-- Lighttable scene -->
     <section id="lighttable" class="scene" hidden>
         <h2>Closely investigate each print</h2>
         <p>Here, you can choose a print, then investigate it. Click the part of the photo that might look important.</p>
         
         <div id="prints" class="contact-sheet"></div>
 
+        <!-- the big view of one print. Hidden until a thumbnail is clicked -->
         <div id="viewer" class="viewer" hidden>
             <div class ="viewer-photo">
                 <img id="viewerImg" src="" alt="">
@@ -55,6 +60,8 @@
                 <p id="viewerClue" class="clue-note" hidden></p>
             </div>
         </div>
+
+        <!-- progress message like "Clues found: 2 of 5" -->
         <p id="lighttableStatus" class="message"></p>
         <div class="nav-row">
             <button class="choice" onclick="showScene('darkroom')">Back to the darkroom</button>
@@ -62,6 +69,7 @@
         </div>
     </section>
     
+    <!-- Clueboard scene -->
     <section id="clueboard" class="scene" hidden>
         <h2>Clue Board</h2>
         <p>Here, you can review the clues you've found and try to piece together the story.</p>

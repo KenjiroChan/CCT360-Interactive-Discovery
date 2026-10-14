@@ -253,7 +253,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
 }
 .choice:hover { border-color: var(--safelight); }
 
-/* ===================== CAMERA (landing) ===================== */
+/* Landing page showing the camera on the shelf */
 
 /* the photo of the camera on the lost-and-found shelf */
 .hero-img {
