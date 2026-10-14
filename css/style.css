@@ -1,4 +1,4 @@
-/* These are the colors i chose but you can change them to whatever pallate you think is better*/
+/* Color pallate*/
 :root {
     --bg: #1b1714;
     --text: #ece4d6;
@@ -10,6 +10,8 @@
 }
 
 * { box-sizing: border-box; }
+
+/* makes sure anything with the "hidden" attribute is actually hidden.*/
 [hidden] { display: none !important; }
 
 body {
@@ -59,19 +61,18 @@ main {
     cursor: pointer;
 }
 
+/* a locked button is faded out and shows the "not allowed" cursor */
 .main-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .message { color: var(--muted); font-style: italic; min-height: 1.4em; }
 
-/* ===================== DARKROOM ===================== */
+/* Darkroom section */
 
-/* body gets data-scene="darkroom" from showScene(), so the whole page turns safelight-red */
 body[data-scene="darkroom"] { background-color: #160605; }
 
-/* the row of negatives */
+/* the row of negatives will wrap if theres too many */
 .negatives { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* one negative: dark film with dashed edges that look like sprocket holes */
 .negative {
     background-color: #2a1f18;
     color: #e0a66b;
@@ -80,7 +81,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
     font-family: "IBM Plex Mono", monospace;
     cursor: pointer;
 }
-.negative:hover { border-color: var(--safelight); }
+.negative:hover { border-color: var(--safelight); } /* border turns red on hover */
 .negative.done { opacity: 0.4; }   /* already developed */
 
 /* the developer tray that holds the print */
@@ -117,7 +118,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
     opacity: 0.15;
 }
 
-/* AFTER developing: the image fades in over 3 seconds (matches the 3000 in developFrame) */
+/* The image fades in over 3 seconds  */
 #trayImg.developed {
     filter: grayscale(1);
     opacity: 1;
@@ -125,7 +126,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
 }
 
 
-/* ===================== LIGHT TABLE ===================== */
+/* Light Table Section */
 
 /* the thumbnails, laid out like a contact sheet */
 .contact-sheet {
@@ -197,7 +198,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
   line-height: 1.3;
 }
 
-/* ===================== CLUE BOARD ===================== */
+/* Clueboard section */
 
 /* the corkboard */
 .board {
@@ -264,7 +265,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
 }
 
 
-/* ===================== FRAME 36 ===================== */
+/* Frame 36 Section */
 
 /* the code box and the button sit side by side, and wrap on small screens */
 .lock { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -301,7 +302,7 @@ body[data-scene="darkroom"] { background-color: #160605; }
 }
 
 
-/* ===================== ENDING ===================== */
+/* Ending */
 
 .ending-img {
   width: 100%;

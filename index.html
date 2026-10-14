@@ -88,7 +88,10 @@
             <button class="main-btn" onclick="checkCode()">Develop frame 36</button>
         </div>
         <p id="codeStatus" class="message"></p>
-
+        <!-- lets the player go back and re-read the numbers on the clue board -->
+        <div class="nav-row">
+            <button class="choice" onclick="showScene('clueboard')">Back to the clue board</button>
+        </div>
         <!-- shown once the code is right -->
         <div id="finalPrint" class="final-print" hidden>
             <img id="finalImg" src="images/36.png" alt="A yellow sticky note on a window that says: thanks for developing my last day in Toronto, Kota. An airport shuttle waits outside.">
