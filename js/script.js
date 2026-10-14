@@ -6,11 +6,11 @@ const frames = [
     {id: "06", title: "Breakfast", img: "images/06.png"},
     {id: "09", title:"Ready to go", img: "images/09.png", cells:[4, 8], hint: "There is something tied to the suitcase.", clue: "Luggage tag: K. Miyake, Toronto to Osaka.", fact: "His full name is Kotaro Miyake, flying home to Osaka."},
     {id: "12", title: "Campus", img: "images/12.png"},
-    {id: "15", title:"Study", img: "images/15.png", cells:[8,9], hint: "One of the notes has something peculiar written on it.", clue: "There is a number on the note.", fact: "Keep note of the number 7."},
+    {id: "15", title:"Study", img: "images/15.png", cells:[11], hint: "One of the notes has something peculiar written on it.", clue: "There is a number on the note.", fact: "Keep note of the number 7."},
     {id: "18", title: "Driving dog", img: "images/18.jpg"},
     {id: "21", title: "Lunch", img: "images/21.png", cells: [10, 11], hint: "Something is stuck to the tray.", clue: "Another sticky note: 3.", fact: "The second number is 3."},
-    {id: "22", title: "Fun with friends", img: "images/22.jpg"},
-    {id: "28", title: "Moving out", img: "images/28.png", cells: [2], hint: "Look inside the locker.", clue: "A sticky note on the back wall: 6.", fact: "The last number is 6."},
+    {id: "22", title: "Snack break", img: "images/22.png"},
+    {id: "28", title: "Moving out", img: "images/28.png", cells: [0], hint: "Look at one of the items on the floor.", clue: "A notebook next to the luggage.", fact: "The last number is 6."},
 ]
 const state={
     scene:"camera",
