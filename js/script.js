@@ -149,6 +149,7 @@ function openPrint(frame){
 
     //if the player has already found the clue, show it right away
     if (state.found.includes(frame.id)) showClue(frame);
+    document.getElementById("viewer").scrollIntoView({behavior: "smooth"});
 }
 
 //Runs when a square is clicked and if the player found a clue
